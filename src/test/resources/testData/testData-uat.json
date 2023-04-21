@@ -1,0 +1,21 @@
+{
+  "getUser": [
+    {
+      "baseUri": "https://reqres.in/",
+      "endPoint": "api/users/12",
+      "statusCode": "200",
+      "method": "GET"
+    }
+  ],
+  "updateUser": [
+    {
+      "baseUri": "https://reqres.in/",
+      "endPoint": "/api/users/12",
+      "payload": "/src/test/resources/requestBody/userData.json",
+      "statusCode": "200",
+      "method": "PUT",
+      "name": "maliha",
+      "job": "QA Tester"
+    }
+  ]
+}

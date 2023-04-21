@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression Suite" verbose="1">
+    <test name="login tests">
+        <classes>
+            <class name="tests.FirstRestAssured">
+                <methods>
+                    <include name="testGetUserAPI"/>
+                    <include name="testUserUpdatePostAPI"/>
+               </methods>
+           </class>
+       </classes>
+   </test>
+</suite>
