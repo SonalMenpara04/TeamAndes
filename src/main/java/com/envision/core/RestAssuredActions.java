@@ -126,4 +126,17 @@ public class RestAssuredActions {
                 .request(ApiUtils.getMethodType(methodType));
         return response;
     }
+    public static Response doPostRequest1(String contentType,String baseUri, String endPoint,String payload, String methodType){
+        Response response = given()
+                .log()
+                .all()
+                .contentType(contentType)
+                .baseUri(baseUri)
+                .basePath(endPoint)
+                .body(payload)
+                .when()
+                .request(ApiUtils.getMethodType(methodType));
+        return response;
+    }
+
 }

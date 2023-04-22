@@ -33,4 +33,33 @@ public class FirstRestAssured {
         response.then().and().assertThat().statusCode(Integer.parseInt(statusCode))
                 .and().assertThat().body(containsString("updatedAt"));
     }
+
+    @DataProviderArgs(value = "GetSingleUserNotFoundData=baseUri,endPoint,methodType,statusCode")
+    @Test(dataProviderClass = DataProviderUtils.class, dataProvider = "jsonDataProvider")
+    public void testGetSingleUserNotFound(String baseUri, String endPoint, String methodType, String statusCode) {
+
+        Response response = RestAssuredActions.doGetRequest(baseUri, endPoint, methodType);
+        response.then().and().assertThat().statusCode(Integer.parseInt(statusCode))
+                .and().assertThat().contentType("application/json;charset=utf-8")
+                .and().assertThat().body(containsString(""));
+
+    }
+
+    @DataProviderArgs(value = "PostRegisterData=contentType,baseUri,endPoint,payload,methodType,email,password,statusCode")
+    @Test(dataProviderClass = DataProviderUtils.class, dataProvider = "jsonDataProvider")
+    public void testPostRegisterSuccessful(String contentType, String baseUri, String endPoint, String payload, String methodType, String email, String password, String statusCode) throws IOException {
+
+
+        String jsonBody = ApiUtils.getStringBody(System.getProperty("user.dir") + payload);
+        jsonBody = jsonBody.replaceAll("%email%", email);
+        jsonBody = jsonBody.replaceAll("%password%", password);
+
+
+        Response response = RestAssuredActions.doPostRequest1(contentType, baseUri, endPoint, jsonBody, methodType);
+        response.then().and().assertThat().statusCode(Integer.parseInt(statusCode))
+                .and().assertThat().body(containsString("token"));
+
+
+    }
+
 }
