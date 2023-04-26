@@ -62,4 +62,16 @@ public class FirstRestAssured {
 
     }
 
+    @DataProviderArgs(value="patchUpdate=baseUri,endPoint,payload,statusCode,methodType")
+    @Test (dataProviderClass = DataProviderUtils.class,dataProvider = "jsonDataProvider")
+
+    public void testUserPatchUpdate(String baseUri,String endPoint, String payload, String statusCode,String method) throws Exception {
+        String jsonBody = ApiUtils.getStringBody(System.getProperty("user.dir")+ payload);
+
+        Response response=RestAssuredActions.doPatchRequest(baseUri,endPoint,method,jsonBody);
+        response.then().and().assertThat().statusCode(Integer.parseInt(statusCode))
+                .and().assertThat().body(containsString("updatedAt"));
+
+    }
+
 }

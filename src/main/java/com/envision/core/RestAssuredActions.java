@@ -139,4 +139,16 @@ public class RestAssuredActions {
         return response;
     }
 
+    public static Response doPatchRequest(String baseUri, String endPoint,String methodType,String payLoad) throws Exception {
+        Response response= given()
+                .log()
+                .all()
+                .baseUri(baseUri)
+                .basePath(endPoint)
+                .body(payLoad)
+                .when()
+                .request(ApiUtils.getMethodType(methodType));
+
+        return response;
+    }
 }

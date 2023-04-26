@@ -38,5 +38,14 @@
       "password": "pistol",
       "statusCode": "200"
     }
-    ]
+    ],
+  "patchUpdate": [
+    {
+      "baseUri": "https://reqres.in/",
+      "endPoint": "/api/users/2",
+      "payload": "/src/test/resources/requestbody/updateUser.json",
+      "statusCode": "200",
+      "methodType": "PATCH"
+    }
+  ]
 }
